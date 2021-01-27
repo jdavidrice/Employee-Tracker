@@ -1,0 +1,26 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "An employee tracker app made with mySQL",
+  "main": "empTracker.js",
+  "scripts": {
+    "test": "npm run jest",
+    "watch": "npm run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdavidrice/Employee-Tracker.git"
+  },
+  "author": "Jeremy Rice",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdavidrice/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/jdavidrice/Employee-Tracker#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "jest": "^26.6.3",
+    "mysql": "^2.18.1",
+    "watch": "^1.0.2"
+  }
+}
