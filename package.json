@@ -12,7 +12,7 @@
     "url": "git+https://github.com/jdavidrice/Employee-Tracker.git"
   },
   "author": "Jeremy Rice",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jdavidrice/Employee-Tracker/issues"
   },
