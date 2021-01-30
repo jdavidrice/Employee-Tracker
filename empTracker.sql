@@ -64,38 +64,62 @@ INSERT INTO role (id, title, salary, department_id) values (29, "Associate", 625
 INSERT INTO role (id, title, salary, department_id) values (30, "Associate", 62500, 6);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (1, "Billy", "McGillicuddy", 1, 1);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (2, "Sally", "McGillicuddy", 1, 2);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (3, "Jo", "Bobham", 1, 3);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (4, "Sra Sra", "Gieligumagu", 1, 4);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (5, "Phaedus", "Kromme", 1, 5);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (6, "Veronica", "Vaughan", 1, 6);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (7, "Sleepy", "Jones", 2, 1);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (2, "Sally", "McGillicuddy", 2, 2);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (3, "Jo", "Bobham", 3, 3);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (4, "Sra Sra", "Gieligumagu", 4, 4);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (5, "Phaedus", "Kromme", 5, 5);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (6, "Veronica", "Vaughan", 6, 6);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (7, "Sleepy", "Jones", 1, 1);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (8, "Tober", "McGillicuddy", 2, 2);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (9, "Fatima", "Patel", 2, 3);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (10, "Akua", "Achebe", 2, 4);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (11, "Kaguya", "Shinomiya", 2, 5);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (12, "Nicholas", "Johnson", 2, 6);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (13, "Susan", "McWhorter", 3, 1);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (14, "Michal", "Eliyahu", 3, 2);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (9, "Fatima", "Patel", 3, 3);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (10, "Akua", "Achebe", 4, 4);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (11, "Kaguya", "Shinomiya", 5, 5);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (12, "Nicholas", "Johnson", 6, 6);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (13, "Susan", "McWhorter", 1, 1);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (14, "Michal", "Eliyahu", 2, 2);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (15, "Yui", "Yuigahama", 3, 3);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (16, "Iolie", "Nkulu", 3, 4);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (17, "Sarah", "Dyjak", 3, 5);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (18, "Tomas", "Holland", 3, 6);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (19, "Elizabeth", "Smith", 4, 1);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (20, "Anson", "Smith", 4, 2);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (21, "Samson", "Harris", 4, 3);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (16, "Iolie", "Nkulu", 4, 4);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (17, "Sarah", "Dyjak", 5, 5);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (18, "Tomas", "Holland", 6, 6);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (19, "Elizabeth", "Smith", 1, 1);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (20, "Anson", "Smith", 2, 2);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (21, "Samson", "Harris", 3, 3);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (22, "Salvatore", "Ranallo", 4, 4);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (23, "Chika", "Fujiwara", 4, 5);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (24, "Rosalie", "Dubois", 4, 6);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (25, "Jaylen", "Coletrane", 5, 1);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (26, "Pieter", "Schumacher", 5, 2);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (27, "Vanessa", "Young", 5, 3);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (28, "Scott", "Corgan", 5, 4);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (23, "Chika", "Fujiwara", 5, 5);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (24, "Rosalie", "Dubois", 6, 6);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (25, "Jaylen", "Coletrane", 1, 1);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (26, "Pieter", "Schumacher", 2, 2);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (27, "Vanessa", "Young", 3, 3);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (28, "Scott", "Corgan", 4, 4);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (29, "Roberto", "De Niro", 5, 5);
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (30, "Hachiman", "Hikigaya", 5, 6);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (30, "Hachiman", "Hikigaya", 6, 6);
 
-SELECT * FROM department;
-SELECT * FROM role;
-SELECT * FROM employee;
+-- SELECT * FROM department;
+-- SELECT * FROM role;
+-- SELECT * FROM employee;
 
+SELECT *
+FROM employee
+INNER JOIN role ON employee.id = role.id
+INNER JOIN department ON role.department_id = department.id;
+
+-- SELECT *
+-- FROM role
+-- INNER JOIN department
+-- ON role.department_id = department.id;
+
+-- -- INNER JOIN will only return all matching values from both tables
+-- SELECT title, firstName, lastName
+-- FROM books
+-- INNER JOIN authors ON books.authorId = authors.id;
+
+-- -- LEFT JOIN returns all of the values from the left table, and the matching ones from the right table
+-- SELECT title, firstName, lastName
+-- FROM books
+-- LEFT JOIN authors ON books.authorId = authors.id;
+
+-- -- RIGHT JOIN returns all of the values from the right table, and the matching ones from the left table
+-- SELECT title, firstName, lastName
+-- FROM books
+-- RIGHT JOIN authors ON books.authorId = authors.id;
   
