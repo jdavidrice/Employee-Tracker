@@ -98,10 +98,11 @@ INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (30
 -- SELECT * FROM role;
 -- SELECT * FROM employee;
 
-SELECT *
+SELECT first_name, last_name, title, salary, department.name
 FROM employee
 INNER JOIN role ON employee.id = role.id
-INNER JOIN department ON role.department_id = department.id;
+INNER JOIN department ON role.department_id = department.id
+ORDER BY department.name;
 
 -- SELECT *
 -- FROM role
