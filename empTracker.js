@@ -1,7 +1,7 @@
 // require("dotenv")
-const mysql = require("mysql");
-const cTable = require("console.table");
-const inquirer = require("inquirer");
+// require('console.table');
+const mysql = require('mysql');
+const inquirer = require('inquirer');
 const PORT = process.env.PORT || 3306;
 
 const connection = mysql.createConnection({
@@ -20,17 +20,6 @@ connection.connect((err) => {
   console.log(`Connected to PORT: ${PORT}`);
   console.log("");
   runPrompt();
-
-  // console.table([
-  //   {
-  //     name: 'foo',
-  //     age: 10
-  //   }, {
-  //     name: 'bar',
-  //     age: 20
-  //   }
-  // ]);
-
 });
 
 function runPrompt() {
@@ -39,6 +28,7 @@ function runPrompt() {
       name: "action",
       type: "rawlist",
       message: "Welcome to your Employee Management System. What would you like to do?",
+      pageSize: 15,
       choices: [
         "View departments",
         "View roles",
@@ -55,7 +45,7 @@ function runPrompt() {
         "Delete employees"
       ]
     })
-    .then(function (answer) {
+    .then(answer => {
       switch (answer.action) {
         case "View departments":
           viewDepartments();
@@ -115,14 +105,14 @@ function runPrompt() {
 function viewDepartments() {
   connection.query("SELECT name FROM department", function (err, res) {
     console.table(res)
-    runPrompt();
+    runPrompt()
   });
 }
 
 function viewRoles() {
   connection.query("SELECT DISTINCT title FROM role", function (err, res) {
     console.table(res)
-    runPrompt();
+    runPrompt()
   });
 }
 
