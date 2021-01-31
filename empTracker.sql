@@ -104,6 +104,8 @@ INNER JOIN role ON employee.id = role.id
 INNER JOIN department ON role.department_id = department.id
 ORDER BY department.name;
 
+SELECT name FROM department;
+
 -- SELECT *
 -- FROM role
 -- INNER JOIN department

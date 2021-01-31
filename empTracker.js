@@ -1,8 +1,8 @@
-
 // require("dotenv")
 const mysql = require("mysql");
 const cTable = require("console.table");
 const inquirer = require("inquirer");
+const PORT = process.env.PORT || 3306;
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -16,7 +16,8 @@ connection.connect((err) => {
   if (err) {
     throw err;
   }
-  console.log("Connected as id " + connection.threadId);
+  console.log("Connected as id: " + connection.threadId);
+  console.log(`Connected to PORT: ${PORT}`);
   console.log("");
   runPrompt();
 
@@ -109,4 +110,25 @@ function runPrompt() {
           break;
       }
     });
+}
+
+function viewDepartments() {
+  connection.query("SELECT name FROM department", function (err, res) {
+    console.table(res)
+    runPrompt();
+  });
+}
+
+function viewRoles() {
+  connection.query("SELECT DISTINCT title FROM role", function (err, res) {
+    console.table(res)
+    runPrompt();
+  });
+}
+
+function viewEmployees() {
+  connection.query("SELECT first_name, last_name FROM employee", function (err, res) {
+    console.table(res)
+    runPrompt();
+  });
 }
