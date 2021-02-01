@@ -59,7 +59,7 @@ function runPrompt() {
         case "View employees":
           viewEmployees();
           break;
-        
+
         case "View managers":
           viewManagers();
           break;
@@ -106,48 +106,65 @@ function runPrompt() {
       }
     });
 }
-
 function viewDepartments() {
-  connection.query("SELECT department_name FROM department", function (err, res) {
+  connection.query("SELECT department_name, id FROM department", function (err, res) {
     console.table(res)
     runPrompt()
   });
 }
-
 function viewRoles() {
   connection.query("SELECT DISTINCT title FROM role", function (err, res) {
     console.table(res)
     runPrompt()
   });
 }
-
 function viewEmployees() {
   connection.query("SELECT first_name, last_name FROM employee", function (err, res) {
     console.table(res)
     runPrompt();
   });
 }
-
 function viewManagers() {
   connection.query("SELECT title, first_name, last_name, manager_id FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
     console.table(res)
     runPrompt();
   });
 }
-
 function viewEmployeesByManager() {
   inquirer
     .prompt({
       name: "manager_id",
       type: "rawlist",
-      message: "What manager do you want to search by?",
+      message: "What manager's team do you want to view?",
       choices: [1, 2, 3, 4, 5, 6]
     })
     .then((answer) => {
-      const query = `SELECT manager_id, title, first_name, last_name, department_name FROM employee  INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
+      const query = `SELECT manager_id, title, first_name, last_name, department_name FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
       connection.query(query, { manager_id: answer.manager_id }, function (err, res) {
         console.table(res);
         runPrompt();
       });
     });
 }
+function viewBudget() {
+  inquirer
+    .prompt({
+      name: "department_id",
+      type: "rawlist",
+      message: "What department's budget do you want to view?",
+      choices: [1, 2, 3, 4, 5, 6]
+    })
+    .then((answer) => {
+      const query = `SELECT ${answer.department_id}, department_name, SUM(role.salary) as Total_department_budget FROM role INNER JOIN department ON role.department_id = department.id WHERE department_id = ${answer.department_id};`
+      connection.query(query, { department_id: answer.department_id }, function (err, res) {
+        console.table(res);
+        runPrompt();
+      })
+    });
+
+}
+// --SELECT first_name, last_name, title, salary, name
+// --FROM employee
+// --INNER JOIN role ON employee.id = role.id
+// --INNER JOIN department ON role.department_id = department.id
+// --ORDER BY manager_id;

@@ -32,7 +32,7 @@ INSERT INTO department (id, department_name) values (5, "Worldwide Marketing");
 INSERT INTO department (id, department_name) values (6, "Operations");
 
 
-INSERT INTO role (id, title, salary, department_id) values (1, "Engineer", 1000000, 1);
+INSERT INTO role (id, title, salary, department_id) values (1, "Engineer", 1000500, 1);
 INSERT INTO role (id, title, salary, department_id) values (2, "Engineer", 1000000, 2);
 INSERT INTO role (id, title, salary, department_id) values (3, "Engineer", 1000000, 3);
 INSERT INTO role (id, title, salary, department_id) values (4, "Engineer", 1000000, 4);
@@ -56,12 +56,12 @@ INSERT INTO role (id, title, salary, department_id) values (21, "Associate", 125
 INSERT INTO role (id, title, salary, department_id) values (22, "Associate", 125000, 4);
 INSERT INTO role (id, title, salary, department_id) values (23, "Associate", 125000, 5);
 INSERT INTO role (id, title, salary, department_id) values (24, "Associate", 125000, 6);
-INSERT INTO role (id, title, salary, department_id) values (25, "Intern", 62500, 1);
-INSERT INTO role (id, title, salary, department_id) values (26, "Intern", 62500, 2);
-INSERT INTO role (id, title, salary, department_id) values (27, "Intern", 62500, 3);
-INSERT INTO role (id, title, salary, department_id) values (28, "Intern", 62500, 4);
-INSERT INTO role (id, title, salary, department_id) values (29, "Intern", 62500, 5);
-INSERT INTO role (id, title, salary, department_id) values (30, "Intern", 62500, 6);
+INSERT INTO role (id, title, salary, department_id) values (25, "Intern", 1000, 1);
+INSERT INTO role (id, title, salary, department_id) values (26, "Intern", 1000, 2);
+INSERT INTO role (id, title, salary, department_id) values (27, "Intern", 1000, 3);
+INSERT INTO role (id, title, salary, department_id) values (28, "Intern", 1000, 4);
+INSERT INTO role (id, title, salary, department_id) values (29, "Intern", 1000, 5);
+INSERT INTO role (id, title, salary, department_id) values (30, "Intern", 1000, 6);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (1, "Billy", "McGillicuddy", 1, 1);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (2, "Sally", "McGillicuddy", 2, 2);
