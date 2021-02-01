@@ -161,7 +161,21 @@ function viewBudget() {
         runPrompt();
       })
     });
-
+}
+function addDepartments() {
+  inquirer
+    .prompt({
+      name: "department_name",
+      type: "input",
+      message: "What department would you like to add?"
+    })
+    .then((answer) => {
+      const query = `INSERT INTO department VALUES (7, "${answer.department_name}");`
+      connection.query(query, { department_name: answer.department_name }, function (err, res) {
+        console.table(res);
+        runPrompt();
+      })
+    })
 }
 // --SELECT first_name, last_name, title, salary, name
 // --FROM employee
