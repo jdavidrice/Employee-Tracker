@@ -1,5 +1,5 @@
 // require("dotenv")
-// require('console.table');
+require('console.table');
 const mysql = require('mysql');
 const inquirer = require('inquirer');
 const PORT = process.env.PORT || 3306;
@@ -60,6 +60,7 @@ function runPrompt() {
           break;
 
         case "View employees by manager":
+          viewManagers();
           viewEmployeesByManager();
           break;
 
@@ -122,10 +123,26 @@ function viewEmployees() {
     runPrompt();
   });
 }
-function viewEmployeesByManager() {
-  connection.query("SELECT manager_id, title, first_name, last_name, name FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id", function (err, res) {
+
+function viewManagers() {
+  connection.query("SELECT title, first_name, last_name, manager_id FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
     console.table(res)
-    runPrompt();
   });
 }
-// "SELECT manager_id, first_name, last_name, title, name FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY manager_id"
+
+function viewEmployeesByManager() {
+  inquirer
+    .prompt({
+      name: "manager_id",
+      type: "rawlist",
+      message: "What manager do you want to search by?",
+      choices: [1, 2, 3, 4, 5, 6]
+    })
+    .then((answer) => {
+      const query = `SELECT manager_id, title, first_name, last_name, name FROM employee  INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
+      connection.query(query, { manager_id: answer.manager_id }, function (err, res) {
+        console.table(res);
+        runPrompt();
+      });
+    });
+}
