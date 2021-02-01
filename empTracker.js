@@ -28,11 +28,12 @@ function runPrompt() {
       name: "action",
       type: "rawlist",
       message: "Welcome to your Employee Management System. What would you like to do?",
-      pageSize: 15,
+      pageSize: 16,
       choices: [
         "View departments",
         "View roles",
         "View employees",
+        "View managers",
         "View employees by manager",
         "View the total utilized budget of a department",
         "Add departments",
@@ -58,9 +59,12 @@ function runPrompt() {
         case "View employees":
           viewEmployees();
           break;
+        
+        case "View managers":
+          viewManagers();
+          break;
 
         case "View employees by manager":
-          viewManagers();
           viewEmployeesByManager();
           break;
 
@@ -104,7 +108,7 @@ function runPrompt() {
 }
 
 function viewDepartments() {
-  connection.query("SELECT name FROM department", function (err, res) {
+  connection.query("SELECT department_name FROM department", function (err, res) {
     console.table(res)
     runPrompt()
   });
@@ -127,6 +131,7 @@ function viewEmployees() {
 function viewManagers() {
   connection.query("SELECT title, first_name, last_name, manager_id FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
     console.table(res)
+    runPrompt();
   });
 }
 
@@ -139,7 +144,7 @@ function viewEmployeesByManager() {
       choices: [1, 2, 3, 4, 5, 6]
     })
     .then((answer) => {
-      const query = `SELECT manager_id, title, first_name, last_name, name FROM employee  INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
+      const query = `SELECT manager_id, title, first_name, last_name, department_name FROM employee  INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
       connection.query(query, { manager_id: answer.manager_id }, function (err, res) {
         console.table(res);
         runPrompt();

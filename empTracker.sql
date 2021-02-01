@@ -6,7 +6,7 @@ USE empTracker_db;
 
 CREATE TABLE department (
   id INT PRIMARY KEY,
-  name VARCHAR(50)
+  department_name VARCHAR(50)
 );
  
 CREATE TABLE role (
@@ -24,12 +24,12 @@ CREATE TABLE employee (
   manager_id INT
 );
 
-INSERT INTO department (id, name) values (1, "Internet Software and Services");
-INSERT INTO department (id, name) values (2, "Software Engineering");
-INSERT INTO department (id, name) values (3, "Hardware Engineering");
-INSERT INTO department (id, name) values (4, "Machine Learning and AI Strategy");
-INSERT INTO department (id, name) values (5, "Worldwide Marketing");
-INSERT INTO department (id, name) values (6, "Operations");
+INSERT INTO department (id, department_name) values (1, "Internet Software and Services");
+INSERT INTO department (id, department_name) values (2, "Software Engineering");
+INSERT INTO department (id, department_name) values (3, "Hardware Engineering");
+INSERT INTO department (id, department_name) values (4, "Machine Learning and AI Strategy");
+INSERT INTO department (id, department_name) values (5, "Worldwide Marketing");
+INSERT INTO department (id, department_name) values (6, "Operations");
 
 
 INSERT INTO role (id, title, salary, department_id) values (1, "Engineer", 1000000, 1);
@@ -94,9 +94,9 @@ INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (28
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (29, "Roberto", "De Niro", 5, 5);
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (30, "Hachiman", "Hikigaya", 6, 6);
 
--- SELECT * FROM department;
--- SELECT * FROM role;
--- SELECT * FROM employee;
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
 
 -- SELECT first_name, last_name, title, salary, name
 -- FROM employee
@@ -104,10 +104,10 @@ INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (30
 -- INNER JOIN department ON role.department_id = department.id
 -- ORDER BY manager_id;
 
-SELECT first_name, last_name, title, name
-FROM employee
-INNER JOIN role ON employee.id = role.id
-ORDER BY manager_id;
+-- SELECT first_name, last_name, title, department_name
+-- FROM employee
+-- INNER JOIN role ON employee.id = role.id
+-- ORDER BY manager_id;
 
 -- SELECT name FROM department;
 
