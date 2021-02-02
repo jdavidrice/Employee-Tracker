@@ -48,10 +48,16 @@ function runPrompt() {
     })
     .then(answer => {
       switch (answer.action) {
+        // case "View departments":
+        // case "View roles":
+        // case "View employees":
+        // case "View managers":
+        //   viewTable("department", ["id", "department_name"]);
+        //   break;
         case "View departments":
-          viewTable("department", ["id", "department_name"]);
+          viewDepartments();
           break;
-
+        
         case "View roles":
           viewRoles();
           break;
@@ -106,34 +112,33 @@ function runPrompt() {
       }
     });
 }
-function viewTable(tableName, columns) {
-  const columnsString = columns.join(", ");
-  connection.query(`SELECT ${columnsString} FROM ${tableName}`, function (err, res) {
-    console.table(res)
-    runPrompt()
-  });
-}
-
+// function viewTable(tableName, columns) {
+//   const columnsString = columns.join(", ");
+//   connection.query(`SELECT ${columnsString} FROM ${tableName}`, function (err, res) {
+//     console.table(res)
+//     runPrompt()
+//   });
+// }
 function viewDepartments() {
-  connection.query("SELECT department_name, id FROM department", function (err, res) {
+  connection.query("SELECT department_name AS 'Department Name', id as 'ID' FROM department", function (err, res) {
     console.table(res)
     runPrompt()
   });
 }
 function viewRoles() {
-  connection.query("SELECT DISTINCT title FROM role", function (err, res) {
+  connection.query("SELECT DISTINCT title AS 'Title' FROM role", function (err, res) {
     console.table(res)
     runPrompt()
   });
 }
 function viewEmployees() {
-  connection.query("SELECT first_name, last_name FROM employee", function (err, res) {
+  connection.query("SELECT first_name AS 'First Name', last_name AS 'Last Name' FROM employee", function (err, res) {
     console.table(res)
     runPrompt();
   });
 }
 function viewManagers() {
-  connection.query("SELECT title, first_name, last_name, manager_id FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
+  connection.query("SELECT title AS 'Title', first_name AS 'First Name', last_name AS 'Last Name', manager_id AS 'Manager ID' FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
     console.table(res)
     runPrompt();
   });
@@ -147,7 +152,7 @@ function viewEmployeesByManager() {
       choices: [1, 2, 3, 4, 5, 6]
     })
     .then((answer) => {
-      const query = `SELECT manager_id, title, first_name, last_name, department_name FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
+      const query = `SELECT manager_id AS 'Manager ID', title AS 'Title', first_name AS 'First Name', last_name AS 'Last Name', department_name AS 'Department Name' FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
       connection.query(query, { manager_id: answer.manager_id }, function (err, res) {
         console.table(res);
         runPrompt();
@@ -163,29 +168,29 @@ function viewBudget() {
       choices: [1, 2, 3, 4, 5, 6]
     })
     .then((answer) => {
-      const query = `SELECT ${answer.department_id}, department_name, SUM(role.salary) as Total_department_budget FROM role INNER JOIN department ON role.department_id = department.id WHERE department_id = ${answer.department_id};`
+      const query = `SELECT ${answer.department_id}, department_name AS 'Department Name', SUM(role.salary) AS 'Total Department Budget' FROM role INNER JOIN department ON role.department_id = department.id WHERE department_id = ${answer.department_id};`
       connection.query(query, { department_id: answer.department_id }, function (err, res) {
         console.table(res);
         runPrompt();
       })
     });
 }
-async function addToTable(tableName, columns) {
-//  const tableName = prompt(tableName)
-  columns.forEach((column) => {
-    const {columnName} = await prompt(columnName)
-  })
- 
-}
-async function prompt(tableName) {
-  const {tableName} = inquirer
-    .prompt({
-      name: `${tableName}`,
-      type: "input",
-      message: `What ${tableName} would you like to add?`
-    })
-  return tableName
-}
+// async function addToTable(tableName, columns) {
+//   //  const tableName = prompt(tableName)
+//   columns.forEach((column) => {
+//     const { columnName } = await prompt(columnName)
+//   })
+
+// }
+// async function prompt(tableName) {
+//   const { tableName } = inquirer
+//     .prompt({
+//       name: `${tableName}`,
+//       type: "input",
+//       message: `What ${tableName} would you like to add?`
+//     })
+//   return tableName
+// }
 function addDepartments() {
   inquirer
     .prompt({
