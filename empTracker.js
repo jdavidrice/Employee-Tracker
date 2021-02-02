@@ -49,7 +49,7 @@ function runPrompt() {
     .then(answer => {
       switch (answer.action) {
         case "View departments":
-          viewDepartments();
+          viewTable("department", ["id", "department_name"]);
           break;
 
         case "View roles":
@@ -106,6 +106,14 @@ function runPrompt() {
       }
     });
 }
+function viewTable(tableName, columns) {
+  const columnsString = columns.join(", ");
+  connection.query(`SELECT ${columnsString} FROM ${tableName}`, function (err, res) {
+    console.table(res)
+    runPrompt()
+  });
+}
+
 function viewDepartments() {
   connection.query("SELECT department_name, id FROM department", function (err, res) {
     console.table(res)
@@ -162,6 +170,22 @@ function viewBudget() {
       })
     });
 }
+async function addToTable(tableName, columns) {
+//  const tableName = prompt(tableName)
+  columns.forEach((column) => {
+    const {columnName} = await prompt(columnName)
+  })
+ 
+}
+async function prompt(tableName) {
+  const {tableName} = inquirer
+    .prompt({
+      name: `${tableName}`,
+      type: "input",
+      message: `What ${tableName} would you like to add?`
+    })
+  return tableName
+}
 function addDepartments() {
   inquirer
     .prompt({
@@ -170,15 +194,23 @@ function addDepartments() {
       message: "What department would you like to add?"
     })
     .then((answer) => {
-      const query = `INSERT INTO department VALUES (7, "${answer.department_name}");`
+      const query = `INSERT INTO department (department_name) VALUES ("${answer.department_name}");`
       connection.query(query, { department_name: answer.department_name }, function (err, res) {
-        console.table(res);
-        runPrompt();
+        viewDepartments();
       })
     })
 }
-// --SELECT first_name, last_name, title, salary, name
-// --FROM employee
-// --INNER JOIN role ON employee.id = role.id
-// --INNER JOIN department ON role.department_id = department.id
-// --ORDER BY manager_id;
+function addRoles() {
+  inquirer
+    .prompt({
+      name: "title",
+      type: "input",
+      message: "What role would you like to add?"
+    })
+    .then((answer) => {
+      const query = `INSERT INTO role (title) VALUES ("${answer.title}");`
+      connection.query(query, { title: answer.title }, function (err, res) {
+        viewRoles();
+      })
+    })
+}
