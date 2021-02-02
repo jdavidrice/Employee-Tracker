@@ -114,12 +114,12 @@ function viewTable(tableName, columns) {
   });
 }
 
-function viewDepartments() {
-  connection.query("SELECT department_name, id FROM department", function (err, res) {
-    console.table(res)
-    runPrompt()
-  });
-}
+// function viewDepartments() {
+//   connection.query("SELECT department_name, id FROM department", function (err, res) {
+//     console.table(res)
+//     runPrompt()
+//   });
+// }
 function viewRoles() {
   connection.query("SELECT DISTINCT title FROM role", function (err, res) {
     console.table(res)
@@ -170,22 +170,22 @@ function viewBudget() {
       })
     });
 }
-async function addToTable(tableName, columns) {
-//  const tableName = prompt(tableName)
-  columns.forEach((column) => {
-    const {columnName} = await prompt(columnName)
-  })
+// async function addToTable(tableName, columns) {
+// //  const tableName = prompt(tableName)
+//   columns.forEach((column) => {
+//     const {columnName} = await prompt(columnName)
+//   })
  
-}
-async function prompt(tableName) {
-  const {tableName} = inquirer
-    .prompt({
-      name: `${tableName}`,
-      type: "input",
-      message: `What ${tableName} would you like to add?`
-    })
-  return tableName
-}
+// }
+// async function prompt(tableName) {
+//   const {tableName} = inquirer
+//     .prompt({
+//       name: `${tableName}`,
+//       type: "input",
+//       message: `What ${tableName} would you like to add?`
+//     })
+//   return tableName
+// }
 function addDepartments() {
   inquirer
     .prompt({
