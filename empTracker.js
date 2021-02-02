@@ -107,25 +107,25 @@ function runPrompt() {
     });
 }
 function viewDepartments() {
-  connection.query("SELECT department_name, id FROM department", function (err, res) {
+  connection.query("SELECT department_name AS 'Department Name', id FROM department", function (err, res) {
     console.table(res)
     runPrompt()
   });
 }
 function viewRoles() {
-  connection.query("SELECT DISTINCT title FROM role", function (err, res) {
+  connection.query("SELECT DISTINCT title AS 'Title' FROM role", function (err, res) {
     console.table(res)
     runPrompt()
   });
 }
 function viewEmployees() {
-  connection.query("SELECT first_name, last_name FROM employee", function (err, res) {
+  connection.query("SELECT first_name AS 'First Name', last_name AS 'Last name' FROM employee", function (err, res) {
     console.table(res)
     runPrompt();
   });
 }
 function viewManagers() {
-  connection.query("SELECT title, first_name, last_name, manager_id FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
+  connection.query("SELECT title as 'Title', first_name, last_name, manager_id FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
     console.table(res)
     runPrompt();
   });
