@@ -89,8 +89,8 @@ function addDepartments() {
       const query = `INSERT INTO department (department_name) VALUES ("${answer.department_name}");`;
       connection.query(query, { department_name: answer.department_name }, function (err, res) {
         viewDepartments();
-      })
-    })
+      });
+    });
 }
 function addRoles() {
   inquirer
@@ -103,8 +103,8 @@ function addRoles() {
       const query = `INSERT INTO role (title) VALUES ("${answer.title}");`;
       connection.query(query, { title: answer.title }, function (err, res) {
         viewRoles();
-      })
-    })
+      });
+    });
 }
 // function addEmployees() {
 //   inquirer
