@@ -1,4 +1,5 @@
 # Employee-Tracker 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5baf8baaecaa46ab9ce8136bdedb9a47)](https://app.codacy.com/gh/jdavidrice/Employee-Tracker?utm_source=github.com&utm_medium=referral&utm_content=jdavidrice/Employee-Tracker&utm_campaign=Badge_Grade)
 [![GitHub license](https://img.shields.io/github/license/jdavidrice/Employee-Tracker)](https://github.com/jdavidrice/Employee-Tracker/blob/master/LICENSE)
 ## Description 
 
