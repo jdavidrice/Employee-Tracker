@@ -20,31 +20,31 @@ connection.connect((err) => {
 });
 function viewAllByDepartment() {
   connection.query("SELECT first_name AS 'First Name', last_name AS 'Last Name', title AS 'Title', salary AS 'Salary', department_name AS 'Department Name' FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY department.department_name", function (err, res) {
-    console.table(res)
+    console.table(res);
     runPrompt();
   });
 }
 function viewDepartments() {
   connection.query("SELECT department_name AS 'Department Name', id AS 'ID' FROM department", function (err, res) {
-    console.table(res)
+    console.table(res);
     runPrompt();
   });
 }
 function viewRoles() {
   connection.query("SELECT DISTINCT title AS 'Title' FROM role", function (err, res) {
-    console.table(res)
+    console.table(res);
     runPrompt();
   });
 }
 function viewEmployees() {
   connection.query("SELECT first_name AS 'First Name', last_name AS 'Last Name' FROM employee", function (err, res) {
-    console.table(res)
+    console.table(res);
     runPrompt();
   });
 }
 function viewManagers() {
   connection.query("SELECT title AS 'Title', first_name AS 'First Name', last_name AS 'Last Name', manager_id AS 'Manager ID' FROM employee INNER JOIN role ON employee.id = role.id WHERE title = 'manager'", function (err, res) {
-    console.table(res)
+    console.table(res);
     runPrompt();
   });
 }
@@ -71,11 +71,11 @@ function viewBudget() {
       message: "What department's budget do you want to view?"
     })
     .then((answer) => {
-      const query = `SELECT ${answer.department_id}, department_name AS 'Department Name', SUM(role.salary) AS 'Total Department Budget' FROM role INNER JOIN department ON role.department_id = department.id WHERE department_id = ${answer.department_id};`
+      const query = `SELECT ${answer.department_id}, department_name AS 'Department Name', SUM(role.salary) AS 'Total Department Budget' FROM role INNER JOIN department ON role.department_id = department.id WHERE department_id = ${answer.department_id};`;
       connection.query(query, { department_id: answer.department_id }, function (err, res) {
         console.table(res);
         runPrompt();
-      })
+      });
     });
 }
 function addDepartments() {
@@ -86,7 +86,7 @@ function addDepartments() {
       message: "What department would you like to add?"
     })
     .then((answer) => {
-      const query = `INSERT INTO department (department_name) VALUES ("${answer.department_name}");`
+      const query = `INSERT INTO department (department_name) VALUES ("${answer.department_name}");`;
       connection.query(query, { department_name: answer.department_name }, function (err, res) {
         viewDepartments();
       })
@@ -100,7 +100,7 @@ function addRoles() {
       message: "What role would you like to add?"
     })
     .then((answer) => {
-      const query = `INSERT INTO role (title) VALUES ("${answer.title}");`
+      const query = `INSERT INTO role (title) VALUES ("${answer.title}");`;
       connection.query(query, { title: answer.title }, function (err, res) {
         viewRoles();
       })

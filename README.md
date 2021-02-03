@@ -1,6 +1,6 @@
 # Employee-Tracker 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5baf8baaecaa46ab9ce8136bdedb9a47)](https://app.codacy.com/gh/jdavidrice/Employee-Tracker?utm_source=github.com&utm_medium=referral&utm_content=jdavidrice/Employee-Tracker&utm_campaign=Badge_Grade)
 [![GitHub license](https://img.shields.io/github/license/jdavidrice/Employee-Tracker)](https://github.com/jdavidrice/Employee-Tracker/blob/master/LICENSE)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5baf8baaecaa46ab9ce8136bdedb9a47)](https://app.codacy.com/gh/jdavidrice/Employee-Tracker?utm_source=github.com&utm_medium=referral&utm_content=jdavidrice/Employee-Tracker&utm_campaign=Badge_Grade)
 ## Description 
 
 Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. This "Employee-Tracker" app represents a solution for managing a company's employees using node, inquirer, and MySQL.
@@ -20,14 +20,13 @@ Developers are often tasked with creating interfaces that make it easy for non-d
 *   [Contributing](#Contributing)
 *   [Tests](#Tests)
 
-
 ## Installation
  
-1. Fork this repository and download it to your computer.
-2. Install [Node.js](https://nodejs.org/en/download/) for your operating system. 
-3. Install and configure [MySQL](https://www.mysql.com/downloads/) for your operating system.
-4. Install the Node Project Manager [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-5. Additional dependencies for this app will be installed when you install NPM.
+1.  Fork this repository and download it to your computer.
+2.  Install [Node.js](https://nodejs.org/en/download/) for your operating system. 
+3.  Install and configure [MySQL](https://www.mysql.com/downloads/) for your operating system.
+4.  Install the Node Project Manager [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+5.  Additional dependencies for this app will be installed when you install NPM.
 
 *   [Return to Top](#Employee-Tracker)
 
@@ -88,5 +87,3 @@ SOFTWARE.
 No tests
 
 *   [Return to Top](#Employee-Tracker)
-
-
