@@ -1,4 +1,3 @@
-// require("dotenv")
 require('console.table');
 const mysql = require('mysql');
 const inquirer = require('inquirer');
@@ -16,9 +15,8 @@ connection.connect((err) => {
   if (err) {
     throw err;
   }
-  console.log("Connected as id: " + connection.threadId);
+  console.log(`Connected as id: ${connection.threadId}`);
   console.log(`Connected to PORT: ${PORT}`);
-  console.log("");
   runPrompt();
 });
 
@@ -28,8 +26,9 @@ function runPrompt() {
       name: "action",
       type: "rawlist",
       message: "Welcome to your Employee Management System. What would you like to do?",
-      pageSize: 16,
+      pageSize: 20,
       choices: [
+        "View all employee info by department",
         "View departments",
         "View roles",
         "View employees",
@@ -54,10 +53,14 @@ function runPrompt() {
         // case "View managers":
         //   viewTable("department", ["id", "department_name"]);
         //   break;
+        case "View all employee info by department":
+          viewAllByDepartment();
+          break;
+
         case "View departments":
           viewDepartments();
           break;
-        
+
         case "View roles":
           viewRoles();
           break;
@@ -119,16 +122,22 @@ function runPrompt() {
 //     runPrompt()
 //   });
 // }
-function viewDepartments() {
-  connection.query("SELECT department_name AS 'Department Name', id as 'ID' FROM department", function (err, res) {
+function viewAllByDepartment() {
+  connection.query("SELECT first_name AS 'First Name', last_name AS 'Last Name', title AS 'Title', salary AS 'Salary', department_name AS 'Department Name' FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY department.department_name", function (err, res) {
     console.table(res)
-    runPrompt()
+    runPrompt();
+  });
+}
+function viewDepartments() {
+  connection.query("SELECT department_name AS 'Department Name', id AS 'ID' FROM department", function (err, res) {
+    console.table(res)
+    runPrompt();
   });
 }
 function viewRoles() {
   connection.query("SELECT DISTINCT title AS 'Title' FROM role", function (err, res) {
     console.table(res)
-    runPrompt()
+    runPrompt();
   });
 }
 function viewEmployees() {
@@ -147,9 +156,8 @@ function viewEmployeesByManager() {
   inquirer
     .prompt({
       name: "manager_id",
-      type: "rawlist",
-      message: "What manager's team do you want to view?",
-      choices: [1, 2, 3, 4, 5, 6]
+      type: "input",
+      message: "What manager's team do you want to view?"
     })
     .then((answer) => {
       const query = `SELECT manager_id AS 'Manager ID', title AS 'Title', first_name AS 'First Name', last_name AS 'Last Name', department_name AS 'Department Name' FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id WHERE employee.manager_id = ${answer.manager_id}`;
@@ -163,9 +171,8 @@ function viewBudget() {
   inquirer
     .prompt({
       name: "department_id",
-      type: "rawlist",
-      message: "What department's budget do you want to view?",
-      choices: [1, 2, 3, 4, 5, 6]
+      type: "input",
+      message: "What department's budget do you want to view?"
     })
     .then((answer) => {
       const query = `SELECT ${answer.department_id}, department_name AS 'Department Name', SUM(role.salary) AS 'Total Department Budget' FROM role INNER JOIN department ON role.department_id = department.id WHERE department_id = ${answer.department_id};`
@@ -218,4 +225,62 @@ function addRoles() {
         viewRoles();
       })
     })
+}
+function addEmployees() {
+  inquirer
+    .prompt([
+      {
+        name: "newEmpFirstName",
+        type: "input",
+        message: "What is the new employee's first name?"
+      },
+      {
+        name: "newEmpLastName",
+        type: "input",
+        message: "What is the new employee's last name?"
+      },
+      {
+        name: "newEmpRoleId",
+        type: "input",
+        message: "What is the new employee's role id?"
+      },
+      {
+        name: "newEmpManagerId",
+        type: "input",
+        message: "What is the new employee's manager id?"
+      }
+    ])
+    .then((answer) => {
+      const query = `INSERT INTO employee VALUES ("${answer.newEmpFirstName}", "${answer.newEmpLastName}", "${answer.newEmpRoleId}", "${answer.newEmpManagerId}");`
+      connection.query(query, [answer.newEmpFirstName, answer.newEmpLastName, answer.newEmpRoleId, answer.newEmpManagerId], function (err, res) {
+        viewEmployees();
+      })
+    })
+}
+function updateEmployeeRoles() {
+  inquirer
+    .prompt({
+      name: "newRole",
+      type: "input",
+      message: "What role update would you like to enact?"
+    })
+    .then((answer) => {
+      const query = `UPDATE role SET title = ${answer.newRole} WHERE id = 1;`
+      connection.query(query, { newRole: answer.newRole }, function (err, res) {
+        viewRoles();
+      })
+    })
+}
+
+function updateEmployeeManagers() {
+
+}
+function deleteDepartments() {
+
+}
+function deleteRoles() {
+
+}
+function deleteEmployees() {
+
 }
