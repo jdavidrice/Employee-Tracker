@@ -29,37 +29,4 @@ CREATE TABLE employee (
   FOREIGN KEY (role_id) REFERENCES role(id),
   FOREIGN KEY (manager_id) REFERENCES employee(id)
 );
-
--- SELECT first_name, last_name, title, salary, name
--- FROM employee
--- INNER JOIN role ON employee.id = role.id
--- INNER JOIN department ON role.department_id = department.id
--- ORDER BY manager_id;
-
--- SELECT first_name, last_name, title, department_name
--- FROM employee
--- INNER JOIN role ON employee.id = role.id
--- ORDER BY manager_id;
-
--- SELECT name FROM department;
-
--- SELECT *
--- FROM role
--- INNER JOIN department
--- ON role.department_id = department.id;
-
--- -- INNER JOIN will only return all matching values from both tables
--- SELECT title, firstName, lastName
--- FROM books
--- INNER JOIN authors ON books.authorId = authors.id;
-
--- -- LEFT JOIN returns all of the values from the left table, and the matching ones from the right table
--- SELECT title, firstName, lastName
--- FROM books
--- LEFT JOIN authors ON books.authorId = authors.id;
-
--- -- RIGHT JOIN returns all of the values from the right table, and the matching ones from the left table
--- SELECT title, firstName, lastName
--- FROM books
--- RIGHT JOIN authors ON books.authorId = authors.id;
   

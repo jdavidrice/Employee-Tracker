@@ -1,6 +1,6 @@
-require('console.table');
-const mysql = require('mysql');
-const inquirer = require('inquirer');
+require("console.table");
+const mysql = require("mysql");
+const inquirer = require("inquirer");
 const PORT = process.env.PORT || 3306;
 
 const connection = mysql.createConnection({
@@ -10,7 +10,6 @@ const connection = mysql.createConnection({
   password: "root",
   database: "empTracker_db",
 });
-
 connection.connect((err) => {
   if (err) {
     throw err;
@@ -19,109 +18,6 @@ connection.connect((err) => {
   console.log(`Connected to PORT: ${PORT}`);
   runPrompt();
 });
-
-function runPrompt() {
-  inquirer
-    .prompt({
-      name: "action",
-      type: "rawlist",
-      message: "Welcome to your Employee Management System. What would you like to do?",
-      pageSize: 20,
-      choices: [
-        "View all employee info by department",
-        "View departments",
-        "View roles",
-        "View employees",
-        "View managers",
-        "View employees by manager",
-        "View the total utilized budget of a department",
-        "Add departments",
-        "Add roles",
-        "Add employees",
-        "Update employee roles",
-        "Update employee managers",
-        "Delete departments",
-        "Delete roles",
-        "Delete employees"
-      ]
-    })
-    .then(answer => {
-      switch (answer.action) {
-        // case "View departments":
-        // case "View roles":
-        // case "View employees":
-        // case "View managers":
-        //   viewTable("department", ["id", "department_name"]);
-        //   break;
-        case "View all employee info by department":
-          viewAllByDepartment();
-          break;
-
-        case "View departments":
-          viewDepartments();
-          break;
-
-        case "View roles":
-          viewRoles();
-          break;
-
-        case "View employees":
-          viewEmployees();
-          break;
-
-        case "View managers":
-          viewManagers();
-          break;
-
-        case "View employees by manager":
-          viewEmployeesByManager();
-          break;
-
-        case "View the total utilized budget of a department":
-          viewBudget();
-          break;
-
-        case "Add departments":
-          addDepartments();
-          break;
-
-        case "Add roles":
-          addRoles();
-          break;
-
-        case "Add employees":
-          addEmployees();
-          break;
-
-        case "Update employee roles":
-          updateEmployeeRoles();
-          break;
-
-        case "Update employee managers":
-          updateEmployeeManagers();
-          break;
-
-        case "Delete departments":
-          deleteDepartments();
-          break;
-
-        case "Delete roles":
-          deleteRoles();
-          break;
-
-        case "Delete employees":
-          deleteEmployees();
-          break;
-      }
-    });
-}
-// function viewTable(tableName, columns) {
-//   const columnsString = columns.join(", ");
-//   connection.query(`SELECT ${columnsString} FROM ${tableName}`, function (err, res) {
-//     console.table(res)
-//     runPrompt()
-//   });
-// }
 function viewAllByDepartment() {
   connection.query("SELECT first_name AS 'First Name', last_name AS 'Last Name', title AS 'Title', salary AS 'Salary', department_name AS 'Department Name' FROM employee INNER JOIN role ON employee.id = role.id INNER JOIN department ON role.department_id = department.id ORDER BY department.department_name", function (err, res) {
     console.table(res)
@@ -182,22 +78,6 @@ function viewBudget() {
       })
     });
 }
-// async function addToTable(tableName, columns) {
-//   //  const tableName = prompt(tableName)
-//   columns.forEach((column) => {
-//     const { columnName } = await prompt(columnName)
-//   })
-
-// }
-// async function prompt(tableName) {
-//   const { tableName } = inquirer
-//     .prompt({
-//       name: `${tableName}`,
-//       type: "input",
-//       message: `What ${tableName} would you like to add?`
-//     })
-//   return tableName
-// }
 function addDepartments() {
   inquirer
     .prompt({
@@ -226,61 +106,150 @@ function addRoles() {
       })
     })
 }
-function addEmployees() {
-  inquirer
-    .prompt([
-      {
-        name: "newEmpFirstName",
-        type: "input",
-        message: "What is the new employee's first name?"
-      },
-      {
-        name: "newEmpLastName",
-        type: "input",
-        message: "What is the new employee's last name?"
-      },
-      {
-        name: "newEmpRoleId",
-        type: "input",
-        message: "What is the new employee's role id?"
-      },
-      {
-        name: "newEmpManagerId",
-        type: "input",
-        message: "What is the new employee's manager id?"
-      }
-    ])
-    .then((answer) => {
-      const query = `INSERT INTO employee VALUES ("${answer.newEmpFirstName}", "${answer.newEmpLastName}", "${answer.newEmpRoleId}", "${answer.newEmpManagerId}");`
-      connection.query(query, [answer.newEmpFirstName, answer.newEmpLastName, answer.newEmpRoleId, answer.newEmpManagerId], function (err, res) {
-        viewEmployees();
-      })
-    })
-}
-function updateEmployeeRoles() {
+// function addEmployees() {
+//   inquirer
+//     .prompt([
+//       {
+//         name: "newEmpFirstName",
+//         type: "input",
+//         message: "What is the new employee's first name?"
+//       },
+//       {
+//         name: "newEmpLastName",
+//         type: "input",
+//         message: "What is the new employee's last name?"
+//       },
+//       {
+//         name: "newEmpRoleId",
+//         type: "input",
+//         message: "What is the new employee's role id?"
+//       },
+//       {
+//         name: "newEmpManagerId",
+//         type: "input",
+//         message: "What is the new employee's manager id?"
+//       }
+//     ])
+//     .then((answer) => {
+//       const query = `INSERT INTO employee VALUES ("${answer.newEmpFirstName}", "${answer.newEmpLastName}", "${answer.newEmpRoleId}", "${answer.newEmpManagerId}");`
+//       connection.query(query, [answer.newEmpFirstName, answer.newEmpLastName, answer.newEmpRoleId, answer.newEmpManagerId], function (err, res) {
+//         viewEmployees();
+//       })
+//     })
+// }
+// function updateEmployeeRoles() {
+//   inquirer
+//     .prompt({
+//       name: "newRole",
+//       type: "input",
+//       message: "What role update would you like to enact?"
+//     })
+//     .then((answer) => {
+//       const query = `UPDATE role SET title = ${answer.newRole} WHERE id = 1;`
+//       connection.query(query, { newRole: answer.newRole }, function (err, res) {
+//         viewRoles();
+//       })
+//     })
+// }
+
+// function updateEmployeeManagers() {
+
+// }
+// function deleteDepartments() {
+
+// }
+// function deleteRoles() {
+
+// }
+// function deleteEmployees() {
+
+// }
+function runPrompt() {
   inquirer
     .prompt({
-      name: "newRole",
-      type: "input",
-      message: "What role update would you like to enact?"
+      name: "action",
+      type: "rawlist",
+      message: "Welcome to your Employee Management System. What would you like to do?",
+      pageSize: 20,
+      choices: [
+        "View all employee info by department",
+        "View departments",
+        "View roles",
+        "View employees",
+        "View managers",
+        "View employees by manager",
+        "View the total utilized budget of a department",
+        "Add departments",
+        "Add roles"
+        // "Add employees",
+        // "Update employee roles",
+        // "Update employee managers",
+        // "Delete departments",
+        // "Delete roles",
+        // "Delete employees"
+      ]
     })
     .then((answer) => {
-      const query = `UPDATE role SET title = ${answer.newRole} WHERE id = 1;`
-      connection.query(query, { newRole: answer.newRole }, function (err, res) {
-        viewRoles();
-      })
-    })
-}
+      switch (answer.action) {
+        case "View all employee info by department":
+          viewAllByDepartment();
+          break;
 
-function updateEmployeeManagers() {
+        case "View departments":
+          viewDepartments();
+          break;
 
-}
-function deleteDepartments() {
+        case "View roles":
+          viewRoles();
+          break;
 
-}
-function deleteRoles() {
+        case "View employees":
+          viewEmployees();
+          break;
 
-}
-function deleteEmployees() {
+        case "View managers":
+          viewManagers();
+          break;
 
+        case "View employees by manager":
+          viewEmployeesByManager();
+          break;
+
+        case "View the total utilized budget of a department":
+          viewBudget();
+          break;
+
+        case "Add departments":
+          addDepartments();
+          break;
+
+        case "Add roles":
+          addRoles();
+          break;
+
+        // case "Add employees":
+        //   addEmployees();
+        //   break;
+
+        // case "Update employee roles":
+        //   updateEmployeeRoles();
+        //   break;
+
+        // case "Update employee managers":
+        //   updateEmployeeManagers();
+        //   break;
+
+        // case "Delete departments":
+        //   deleteDepartments();
+        //   break;
+
+        // case "Delete roles":
+        //   deleteRoles();
+        //   break;
+
+        // case "Delete employees":
+        //   deleteEmployees();
+        //   break;
+      }
+    });
 }
