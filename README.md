@@ -5,8 +5,8 @@
 
 Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. This "Employee-Tracker" app represents a solution for managing a company's employees using node, inquirer, and MySQL.
 
-![Sample Picture of App](emp_tracker_app.jpg)
-![Sample Picture of App](emp_tracker_app_2.jpg)
+![Sample Picture of App](emp_tracker_app.png)
+![Sample Picture of App](emp_tracker_app_2.png)
 
 [Walkthrough Video](https://drive.google.com/file/d/1v0JBJbUx7DrIV2niXRns7s90kMrnPdbF/view)
 
